@@ -1,0 +1,42 @@
+.login_out_btn {
+    background: none;
+    border: none;
+    margin-top: 50px;
+}
+
+.signing_box {
+    background: rgb(240, 248, 255);
+    border-radius: 25px;
+    padding: 20px;
+    display: inline-block;
+    position: absolute;
+    left: 42%;
+    top: 30%;
+}
+
+.input_form {
+    margin-top: 30px;
+}
+
+input {
+    margin: 10px;
+    border-radius: 7px;
+    height: 30px;
+}
+
+#acc_signin {
+    margin-top: 30px;
+    margin-left: 80px;
+    border-radius: 9px;
+}
+
+#acc_signup {
+    margin-top: 30px;
+    margin-left: 80px;
+    border-radius: 9px;
+}
+
+.icon {
+    width: 25px;
+    height: 25px;
+}
