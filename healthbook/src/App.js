@@ -2,6 +2,8 @@ import React from 'react';
 import user_icon from './user_icon.webp';
 import password_icon from './password_icon.webp';
 import email_icon from './email_icon.webp';
+import Table from './components/table';
+
 
 class SigninBox extends React.Component {
     constructor(props) {
@@ -60,9 +62,97 @@ class SigninBox extends React.Component {
 }
 
 function App() {
+    const columns = React.useMemo(
+        () => [
+          {
+            Header: 'User Info',
+            columns: [
+              {
+                Header: 'Name',
+                accessor: 'name',
+    
+              },
+              {
+                Header: 'Age',
+                accessor: 'age',
+    
+              },
+              {
+                Header: 'Email',
+                accessor: 'email',
+    
+              },
+            ],
+          },
+          {
+            Header: 'Health Info',
+            columns: [
+              {
+                Header: 'covid vaccination',
+                accessor: 'covid',
+              },
+              {
+                Header: 'other',
+                accessor: 'other',
+              },
+            ],
+          },
+        ],
+        []
+      )
+    
+      const data = React.useMemo(() =>
+      [
+      {
+      name: 'Kim Parrish',
+      age: 23,
+      email: 'jfeifjeoi@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      {
+      name: 'Michele Castillo',
+      age: 34,
+      email: 'ghijidsasnf@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      {
+      name: 'Eric Ferris',
+      age: 23,
+      email: 'jfeifjfefei@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      {
+      name: 'Gloria Noble',
+      age: 56,
+      email: 'jfeifdsdoi@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      {
+      name: 'Darren Daniels',
+      age: 45,
+      email: 'jfeiffwefwefjeoi@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      {
+      name: 'Ted McDonald',
+      age: 32,
+      email: 'jfeifceceejeoi@gmail',
+      covid: 'false',
+      other: 'other',
+      },
+      ],
+      []
+     )
+
     return (
       <main className="container">
-        <SigninBox />
+        {/* <SigninBox /> */}
+        <Table columns={columns} data={data} />
       </main>
     );
   }
