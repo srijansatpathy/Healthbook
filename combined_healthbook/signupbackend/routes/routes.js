@@ -23,4 +23,8 @@ router.post('/signup', async (request, response) => {
     })
 })
 
+router.get('/login', (request, response) => {
+    
+})
+
 module.exports = router
