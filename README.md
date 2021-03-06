@@ -9,7 +9,7 @@
 To clone the current repository into the local repository
 
 3: "cd combined_healthbook" 
-To open up the prject source code location
+To see the project source code location under folder "combined_healthbook" 
 
 4: "npm install"
 To install the required modules inside "combined_healthbook" folder
