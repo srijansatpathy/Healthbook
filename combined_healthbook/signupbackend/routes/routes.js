@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const signupTemplateCopy = require('../models/SignupModels')
 const bcrypt = require('bcrypt')
+const axios = require('axios')
 
 router.post('/signup', async (request, response) => {
 
@@ -23,8 +24,25 @@ router.post('/signup', async (request, response) => {
     })
 })
 
-router.get('/login', (request, response) => {
-    
+router.post('/login', async (request, response) => {
+
+    const {username, password} = request.body
+    signupTemplateCopy.find({username},async (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        else {
+            const pass_check = await bcrypt.compare(password, user[0].password)
+
+            if (user && pass_check) {
+                response.json(user)
+            }
+            else {
+                console.log("Incorrect password")
+                response.send(false)
+            }
+        }
+    })
 })
 
 module.exports = router

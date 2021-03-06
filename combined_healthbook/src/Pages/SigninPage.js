@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios'
+
 import user_icon from '../Images/user_icon.webp';
 import password_icon from '../Images/password_icon.webp';
 import email_icon from '../Images/email_icon.webp';
@@ -88,29 +90,14 @@ class SigninBox extends React.Component {
         event.preventDefault();
 
         const loginData = {
-            userName: this.state.userName,
-            password: this.state.password,
-            isAdmin: this.state.isAdmin
-        }
-
-        // Verify the user infomation before logining in
-        if(this.state.isUser)
-            window.location = '/dashboard';
-        
-        // if login failed, reset everything to default 
-        else {
-            this.setState({
-                loggedin: false,
-                isUser: false,
-                isAdmin: true,
-                userName: "",
-                email: "",
-                password: "",
-                isRegister: false
-            });
+            username: this.state.userName,
+            password: this.state.password
         }
 
         // Axio data to Backend server
+        axios.post('http://localhost:4000/app/login', loginData)
+        .then(response => response.data ? window.location = '/dashboard' : alert ("incorrect password"))
+    
 
     }
 

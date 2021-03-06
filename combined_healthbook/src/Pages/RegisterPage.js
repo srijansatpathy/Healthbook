@@ -1,4 +1,5 @@
 import React from "react"
+import axios from 'axios'
 
 import user_icon from '../Images/user_icon.webp';
 import password_icon from '../Images/password_icon.webp';
@@ -28,7 +29,7 @@ class RegisterBox extends React.Component {
         this.inputEmail = 
         this.inputEmail.bind(this);
 
-        this.onSumbit = this.onSumbit.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
 
@@ -61,13 +62,13 @@ class RegisterBox extends React.Component {
         });
     }
 
-    onSumbit (event) {
+    onSubmit (event) {
         event.preventDefault();
 
         const registerData = {
-            userName: this.state.userName,
+            username: this.state.userName,
+            email: this.state.email,
             password: this.state.password,
-            isAdmin: this.state.isAdmin,
         }
 
         // Verify the sign up process
@@ -75,7 +76,14 @@ class RegisterBox extends React.Component {
             window.location = '/';
 
         // Axios input data session
-
+        axios.post('http://localhost:4000/app/signup', registerData)
+            .then(response => console.log(response.data))
+        
+        this.setState({
+            userName:'',
+            email:'',
+            password:''
+        })
     }
 
 
@@ -88,7 +96,7 @@ class RegisterBox extends React.Component {
                     <div className="signing_box" >
                          
                         <span>Register an account</span>
-                        <form className="input_form" onSumbit={this.onSubmit}>
+                        <form className="input_form" onSubmit={this.onSubmit}>
                             <img className="icon" src={user_icon}/>
                             <input type="txt" placeholder="username"
                                    onChange={this.inputUsername}
