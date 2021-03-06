@@ -23,7 +23,7 @@ function NavigationTab(props) {
     // sidebar switch
     const showSidebar = () => setSidebar(!sidebar);
 
-    let isadmin = false;
+    var isadmin = false;
 
     // Check for admin mode
     if(props.admin === "true")
@@ -40,14 +40,12 @@ function NavigationTab(props) {
             
         {/*Display option items for the navigation
         and link them with paths*/}
-        <NavItems icon={HeroIcons.HiViewList}>
-            <DropdownMenu/>
-        </NavItems>    
+           
 
-        <ProfilePic/> 
+        <ProfilePic path="/profile"/> 
         <NavItems icon={FlatcolorIcons.FcHome} path= "/dashboard" />
         <NavItems icon={RemixIcons.RiChatSmile2Line} path= "/message" />
-        <NavItems icon={RemixIcons.RiLogoutBoxLine} path= "/login" />
+        <NavItems icon={RemixIcons.RiLogoutBoxLine} path= "/#" />
         
         <NavItems icon={RemixIcons.RiCheckboxBlankCircleLine} 
         path= "#" admin={isadmin}/>
@@ -87,7 +85,7 @@ function NavItems(props) {
     else {
         return (
             <li className="navItem">
-                <Link to={props.path} className="navButton" onClick={openTab}>
+                <Link to={props.path || '/#'} className="navButton" onClick={openTab}>
                     <props.icon size="32"/> 
                             
                     {open && props.children}
@@ -120,10 +118,12 @@ function DropdownMenu(){
 
 }
 
-function ProfilePic(){
+function ProfilePic(props){
     return (
         <li className="navItem"> 
+            <Link to={props.path || '/#'}>
             <img src={logo_hea} className="navButton" />
+            </Link>
         </li>
         
         

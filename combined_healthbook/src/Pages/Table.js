@@ -238,7 +238,9 @@ export default function Table() {
         </select>
       </div>
     </>
-  )
+  );
+
+  
 }
 
 function TextFilter({

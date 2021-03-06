@@ -1,11 +1,25 @@
 import React from 'react';
 import '../index.css'
+import '../Pages/Dashboard.css'
+import  NavigationTab from '../Navigation/NavigTab.js';
+import checkadmin from "../Pages/SigninPage"
 
 function Dashboard() {
+
+    let checkStatus = "false";
+
+    if(checkadmin)
+        checkStatus = "true"
+        
     return (
-        <div className='dashboard' className='container'>
-            <h1>Dashboard</h1>
-        </div>
+        
+        <>
+        <NavigationTab admin={checkStatus}/>
+        <h1 className="textTitle">
+            Dashboard</h1>
+            
+        </>
+        
     );
 }
 
