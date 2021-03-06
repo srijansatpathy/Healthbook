@@ -116,30 +116,16 @@ class SigninBox extends React.Component {
 
     render() {
 
-        // Case 1: is user mode 
-        if (false) {
-
-            // Sub case: check if admin mode
-            if(this.state.isAdmin) {
-
-                checkadmin = true;  
-                return (
-                    <a href='/dashboard'>
-                    <NavigationTab admin="true"></NavigationTab>
-                    </a>
-                );
-            }
-            
-        }
-
-        // Case 2 & 3: login process 
-        else if (this.state.isRegister) {
+        // Case 1:  Register process
+        if (this.state.isRegister) {
             return (
                 
                 <RegisterBox />
                 
             );
         }
+
+        // Case 2: Login Process
         else {
             return (
                 <h1><img src={logo_main} width = '288' height= '82'/>
