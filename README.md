@@ -5,7 +5,7 @@
 1: open the command prompt or terminal on the local computer
 "cd" to the working repository
 
-2: "git clone" <this repository url>
+2: "git clone" [this repository url]
 To clone the current repository into the local repository
 
 3: "cd combined_healthbook" 
