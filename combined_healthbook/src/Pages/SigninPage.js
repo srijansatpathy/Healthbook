@@ -15,6 +15,22 @@ import RegisterBox from "../Pages/RegisterPage.js";
 
 var checkadmin = false;   // global variable for Navigation
 
+var DataInfo = {
+
+    // Username infor
+    userName: "",
+    Age: "",
+    status: "",
+
+
+    // Array of posts
+    posts: new Array()
+
+};
+
+
+
+
 
 class SigninBox extends React.Component {
     constructor(props) {
@@ -43,18 +59,6 @@ class SigninBox extends React.Component {
     }
 
     // Login and verfication process
-    logginin() {
-        this.setState({
-            loggedin: true,
-        });
-    }
-
-    logginout() {
-        this.setState({
-            loggedin: false,
-        });
-    }
-
     loginSuccess() {
         this.setState({
             isUser: true,
@@ -94,9 +98,13 @@ class SigninBox extends React.Component {
             password: this.state.password
         }
 
+        DataInfo.userName = loginData.username;
+        console.log(DataInfo.userName);
+
         // Axio data to Backend server
         axios.post('http://localhost:4000/app/login', loginData)
-        .then(response => response.data ? window.location = '/dashboard' : alert ("incorrect password"))
+        .then(response => response.data ? window.location = 
+              '/dashboard' : alert ("incorrect password"))
     
 
     }
@@ -125,12 +133,14 @@ class SigninBox extends React.Component {
                                value = {this.state.userName}
                                className="form-control form-group"
                         /> <br/>
+
                         <img className="icon" src={password_icon}/>
                         <input type="password" placeholder="password"
                                onChange={this.inputPassword}
                                value = {this.state.password}
                                className="form-control form-group"
                         /> <br/>
+
                         <input id="acc_signin" type="submit" value="Log-in" 
                         onClick={() => this.loginSuccess()}>
                         </input> <br/>
@@ -147,4 +157,15 @@ class SigninBox extends React.Component {
     }
 }
 
+
+
+// Export data for other files to use
+const getUsername = () => {
+    return DataInfo.userName;
+}
+
+
+
+// Export data by using get functions
 export default SigninBox;
+

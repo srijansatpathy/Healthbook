@@ -2,7 +2,9 @@ import React from 'react';
 import '../index.css'
 import '../Pages/Dashboard.css'
 import  NavigationTab from '../Navigation/NavigTab.js';
-import checkadmin from "../Pages/SigninPage"
+import checkadmin from "../Pages/SigninPage.js"
+import Writeposts from './Writeposts';
+import Posts from "./DisplayPosts";
 
 function Dashboard() {
 
@@ -15,10 +17,13 @@ function Dashboard() {
         
         <>
         <NavigationTab admin={checkStatus}/>
-        <h1 className="textTitle">
-            Dashboard</h1>
+        <Writeposts/>
+
+        <Posts />
             
         </>
+
+        
         
     );
 }

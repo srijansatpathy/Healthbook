@@ -118,12 +118,16 @@ class RegisterBox extends React.Component {
                                    className="form-control form-group"
                             /> <br/>
 
-                            <input id="acc_signup" type="submit" value="Signup"/>
+                            <input id="acc_signup" type="submit" value="Signup" 
+                             onClick={() => this.completeRegister()}/>
     
                              <br/>
-                            <button className="login_out_btn" 
-                            onClick={() => this.completeRegister()}>Go back to login</button>
+                            
                         </form>
+                        
+                        <button  className="login_out_btn" 
+                            onClick={() => window.location="/"}>
+                            Go back to login</button>
                     </div>
                     </h1>
             )

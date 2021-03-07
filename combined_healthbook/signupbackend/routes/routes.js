@@ -4,6 +4,8 @@ const router = express.Router()
 const signupTemplateCopy = require('../models/SignupModels')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
+const Post = require("../models/PostModels");
+
 
 router.post('/signup', async (request, response) => {
 
@@ -45,4 +47,30 @@ router.post('/login', async (request, response) => {
     })
 })
 
-module.exports = router
+// Store saved notes
+router.route("/addposts").post((req,res) => {
+    const title = req.body.title;
+    const content = req.body.content;
+
+    // construct the data struct
+    const savedPost = new Post({
+        title,
+        content
+    });
+
+    savedPost.save();
+
+})
+
+// Get notes from database
+router.route("/poststore").get((req, res) => {
+
+    // search for every post in the data base
+    Post.find({ })
+        .then((foundPosts) => {
+            console.log('Data: ', foundPosts);
+            res.json(foundPosts)
+        })
+})
+
+module.exports = router;
