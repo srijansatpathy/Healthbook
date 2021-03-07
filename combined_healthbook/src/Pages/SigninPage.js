@@ -87,7 +87,7 @@ class SigninBox extends React.Component {
 
     // use to prevent the default refresh of the login page
     onSubmit(event){
-        if (this.state.userName == "" || this.state.email == "" || this.state.password == "") {
+        if (this.state.userName == "" || this.state.password == "") {
             alert("invalid input")
             return;
         }
