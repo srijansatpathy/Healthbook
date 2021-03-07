@@ -11,19 +11,46 @@ router.post('/signup', async (request, response) => {
 
     const saltpassword = await bcrypt.genSalt(10)
     const securePassword = await bcrypt.hash(request.body.password, saltpassword)
+    let valid_registration = true
+    let error_msg = ""
 
     const signupUser = new signupTemplateCopy({
         username:request.body.username,
         email:request.body.email,
         password:securePassword
     })
-    signupUser.save()
-    .then(data =>{
-        response.json(data)
+    const {username, email} = request.body
+    await signupTemplateCopy.find({username}, (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        if (user !== undefined && user.length != 0) {
+            valid_registration = false
+            error_msg = "username exist"
+        }
     })
-    .catch(error =>{
-        response.json(errpr)
+    await signupTemplateCopy.find({email}, (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        if (user !== undefined && user.length != 0) {
+            valid_registration = false
+            error_msg = "email exist"
+        }
     })
+    
+    if (valid_registration) {
+        signupUser.save()
+        .then(data =>{
+            response.json(data)
+        })
+        .catch(error =>{
+            response.json(error)
+        })
+    }
+    else {
+        response.send(error_msg)
+    }
 })
 
 router.post('/login', async (request, response) => {
@@ -33,15 +60,18 @@ router.post('/login', async (request, response) => {
         if (err) {
             console.log(err.message)
         }
+        else if (user === undefined || user.length == 0){
+            console.log("User not found")
+            response.send("User not found")
+        }
         else {
             const pass_check = await bcrypt.compare(password, user[0].password)
-
             if (user && pass_check) {
                 response.json(user)
             }
             else {
                 console.log("Incorrect password")
-                response.send(false)
+                response.send("Incorrect password")
             }
         }
     })

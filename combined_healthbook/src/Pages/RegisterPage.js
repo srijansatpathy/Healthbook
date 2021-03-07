@@ -18,6 +18,8 @@ class RegisterBox extends React.Component {
             userName: "",
             password: "",
             email: "",
+            id:"",
+            accType:"",
             isCompleted: false
         }
 
@@ -64,20 +66,22 @@ class RegisterBox extends React.Component {
 
     onSubmit (event) {
         event.preventDefault();
-
         const registerData = {
             username: this.state.userName,
             email: this.state.email,
             password: this.state.password,
         }
 
-        // Verify the sign up process
-        if(this.state.isCompleted)
-            window.location = '/';
-
         // Axios input data session
         axios.post('http://localhost:4000/app/signup', registerData)
-            .then(response => console.log(response.data))
+        .then(response => {
+            if(response.headers["content-type"].indexOf("text") !== -1) {
+                alert(response.data)
+            }
+            else {
+                window.location = '/'
+            }
+        })
         
         this.setState({
             userName:'',

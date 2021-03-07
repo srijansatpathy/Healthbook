@@ -91,6 +91,10 @@ class SigninBox extends React.Component {
 
     // use to prevent the default refresh of the login page
     onSubmit(event){
+        if (this.state.userName == "" || this.state.password == "") {
+            alert("invalid input")
+            return;
+        }
         event.preventDefault();
 
         const loginData = {
@@ -103,8 +107,14 @@ class SigninBox extends React.Component {
 
         // Axio data to Backend server
         axios.post('http://localhost:4000/app/login', loginData)
-        .then(response => response.data ? window.location = 
-              '/dashboard' : alert ("incorrect password"))
+        .then(response => {
+            if(response.headers["content-type"].indexOf("text") !== -1) {
+                alert(response.data)
+            }
+            else {
+                window.location = '/dashboard'
+            }
+        })
     
 
     }
