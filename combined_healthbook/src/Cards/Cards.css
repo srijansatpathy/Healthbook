@@ -1,5 +1,6 @@
 /* body {
     background: radial-gradient(#e5e5e5, #ffff, #e5e5e5);
+    background-color: white;
 } */
 
 .card {
@@ -19,9 +20,10 @@
     padding: 0.4rem 1.9rem;
 }
 
-.container-fluid .row {
+/* .container-fluid .row {
     padding-top: 6rem;
-} 
+    padding-left: 6rem;
+}  */
 
 .overflow {
     overflow: hidden;
@@ -33,5 +35,12 @@
 }
 
 .card-img-top:hover {
-    transform: scale(1.8);
+    transform: scale(1.2);
 } 
+
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-top: 4rem;
+}
