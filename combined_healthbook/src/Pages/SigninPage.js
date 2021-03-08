@@ -151,7 +151,7 @@ class SigninBox extends React.Component {
                                className="form-control form-group"
                         /> <br/>
 
-                        <input id="acc_signin" type="submit" value="Log-in" 
+                        <input id="acc_signin" type="submit" value="Log in" 
                         onClick={() => this.loginSuccess()}>
                         </input> <br/>
                         <button className="login_out_btn" 

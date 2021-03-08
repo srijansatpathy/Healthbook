@@ -6,8 +6,8 @@ import {BrowserRouter as Router, Switch, Route}
 from 'react-router-dom';
 import Table from "./Pages/Table";
 import React from "react";
-// import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Card from './Cards/Cards'
+//import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Card from './Cards/Cards.jsx'
 
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
         <Route path='/' exact component={SigninBox}/>
         <Route path='/dashboard' component={Dashboard}  />
         <Route path='/admin' component={Table} />
-        <Route path='/profile' component={Card} />
+        <Route exact path='/profile' component={Card} />
       </Switch>
     </Router>  
 

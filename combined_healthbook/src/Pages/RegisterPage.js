@@ -122,7 +122,7 @@ class RegisterBox extends React.Component {
                                    className="form-control form-group"
                             /> <br/>
 
-                            <input id="acc_signup" type="submit" value="Signup" 
+                            <input id="acc_signup" type="submit" value="Sign up" 
                              onClick={() => this.completeRegister()}/>
     
                              <br/>

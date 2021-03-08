@@ -32,11 +32,11 @@ export default function Table() {
             Header: 'Health Info',
             columns: [
             {
-                Header: 'covid vaccination',
+                Header: 'Covid Vaccination',
                 accessor: 'covid',
             },
             {
-                Header: 'other',
+                Header: 'Other',
                 accessor: 'other',
             },
             ],
