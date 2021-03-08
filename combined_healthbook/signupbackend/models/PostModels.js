@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const postsSchema = {
     title: String,
-    content: String
+    content: String,
+    date:{
+        type: Date,
+        default: Date.now
+    }
 }
 
 

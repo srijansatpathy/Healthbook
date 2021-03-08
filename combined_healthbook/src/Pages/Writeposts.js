@@ -1,5 +1,7 @@
 import React, {useState} from "react"
 import Axios from "axios";
+import NavigationTab from "../Navigation/NavigTab.js";
+import "./Dashboard.css";
 
 function Writeposts(props) {
 
@@ -37,30 +39,32 @@ function Writeposts(props) {
 
     return (
         
+        <>
+        <NavigationTab />
         
-        <div className='container'> 
-        <h1>Creating posts</h1><br/><br/>
+        <h1 className="createPosts">Creating posts</h1>
+        
+        <div>
          <form>
-            <div className= 'form-group'>
+            <div className="createTitle">
                 <input name="title" className="form-control"
                 autoComplete="off" onChange={handleChange}
-                placeholder="Title"></input>
+                placeholder="Title" size="58"></input>
             </div>
 
-            <div className = 'form-group'>
+            <div className="createContent">
                 <textarea name="content" className="form-control"
                  autoComplete="off" onChange={handleChange}
-                 placeholder="Content">
+                 placeholder="Content" rows="16" cols="35">
                 </textarea>
             </div>
 
             <button onClick={handClick}
-            className="btn btn-lg btn-info">
-            Add</button>
-        </form>
-            
+            className="createButton">
+            Post</button>
+        </form>       
         </div>
-    
+        </>
     );
 }
 

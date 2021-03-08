@@ -4,10 +4,13 @@ import Card from './CardUI';
 import me from '../Images/IMG_0620.jpg';
 import vaccine from '../Images/economics-of-vaccinations.jpg';
 import health from '../Images/wcs-health-chech.png';
+import NavigationTab from "../Navigation/NavigTab.js";
 
 class Cards extends Component {
     render() {
         return (
+            <>
+            <NavigationTab />
             <div className=
             "container-fluid d-flex justify-content-center">
                 <div className="row">
@@ -32,6 +35,7 @@ class Cards extends Component {
                     </div>
                 </div>
             </div>
+            </>
         );
     }
 }

@@ -1,9 +1,20 @@
-import React from "react";
+import React, {createContext, useContext} from "react";
 import axios from "axios";
 
 // Use this to grab data from database
 import {useEffect, useState} from "react";
-import "./Dashboard.css"
+import "./Dashboard.css";
+
+const PostContexts = createContext();
+
+const CreatePosts = (props) => {
+
+    return(
+        <PostContexts value={props.data}>
+            {props.children}
+        </PostContexts>
+    )
+}
 
 
 function Posts() {
@@ -24,21 +35,26 @@ function Posts() {
             console.log("can't access data")
          })
     
-
+        
     return(
         // Display posts
-        DisplayAarryPost(posts)
+        <div className="allPosts">
+        {DisplayAarryPost(posts)}
+        </div>
         
     );
 }
 
 function DisplayAarryPost(posts) {
 
+    
+
     return posts.map((post, index) => (
         
-            <div key={index}>
-                <h3 className="textTitle">{post.title}</h3>
-                <p>{post.content}</p>
+            <div className="posts" key={index}>
+                <h1 className="postTitle">{post.title}</h1>
+                <p className="postContent">{post.content}</p>
+                <span className="postDate">{post.date}</span>
                 <br/><br/>
             </div>
 

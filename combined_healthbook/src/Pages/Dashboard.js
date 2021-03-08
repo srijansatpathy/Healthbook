@@ -17,7 +17,7 @@ function Dashboard() {
         
         <>
         <NavigationTab admin={checkStatus}/>
-        <Writeposts/>
+        {/* <Writeposts/> */}
 
         <Posts />
             

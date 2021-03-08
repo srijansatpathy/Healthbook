@@ -7,7 +7,8 @@ from 'react-router-dom';
 import Table from "./Pages/Table";
 import React from "react";
 // import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Card from './Cards/Cards'
+import Card from './Cards/Cards';
+import Writeposts from "./Pages/Writeposts";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/dashboard' component={Dashboard}  />
         <Route path='/admin' component={Table} />
         <Route path='/profile' component={Card} />
+        <Route path='/message' component={Writeposts} />
       </Switch>
     </Router>  
 
