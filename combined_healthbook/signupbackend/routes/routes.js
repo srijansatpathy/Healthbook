@@ -5,6 +5,7 @@ const signupTemplateCopy = require('../models/SignupModels')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
 const Post = require("../models/PostModels");
+const {getAccounts} = require("../controllers/accounts");
 
 
 router.post('/signup', async (request, response) => {
@@ -102,5 +103,7 @@ router.route("/poststore").get((req, res) => {
             res.json(foundPosts)
         })
 })
+
+router.route("/accounts").get(getAccounts);
 
 module.exports = router;

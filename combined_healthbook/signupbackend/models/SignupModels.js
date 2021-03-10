@@ -16,6 +16,18 @@ const signupTemplate = new mongoose.Schema({
     date:{
         type:Date,
         default:Date.now
+    },
+    covid:{
+        type:String,
+        default:"false"
+    },
+    age:{
+        type:Number,
+        default: 0
+    },
+    other:{
+        type:String,
+        default: "NONE"
     }
 })
 
