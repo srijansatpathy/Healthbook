@@ -11,22 +11,24 @@ import Card from './Cards/Cards';
 import Writeposts from "./Pages/Writeposts";
 //import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
-
+import { GlobalProvider } from './context/GlobalState';
 
 function App() {
 
 
   return (
-    <Router>
-      {/* <NavigationTab /> */}
-      <Switch>
-        <Route path='/' exact component={SigninBox}/>
-        <Route path='/dashboard' component={Dashboard}  />
-        <Route path='/admin' component={Table} />
-        <Route path='/profile' component={Card} />
-        <Route path='/message' component={Writeposts} />
-      </Switch>
-    </Router>  
+    <GlobalProvider>
+      <Router>
+        {/* <NavigationTab /> */}
+        <Switch>
+          <Route path='/' exact component={SigninBox}/>
+          <Route path='/dashboard' component={Dashboard}  />
+          <Route path='/admin' component={Table} />
+          <Route path='/profile' component={Card} />
+          <Route path='/message' component={Writeposts} />
+        </Switch>
+      </Router>  
+    </GlobalProvider>
 
     
   );

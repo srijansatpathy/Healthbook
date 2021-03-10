@@ -1,102 +1,59 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react';
 import { useTable, usePagination, useFilters } from 'react-table'
 import  NavigationTab from '../Navigation/NavigTab.js';
+import { GlobalContext } from '../context/GlobalState';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Table() {
+  const { accounts, getAccounts } = useContext(GlobalContext);
+
+  useEffect(() => {
+    getAccounts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
     
     // Demo : Table function
-    const columns = React.useMemo(
-        () => [
-        {
-            Header: 'User Info',
-            columns: [
-            {
-                Header: 'Name',
-                accessor: 'name',
+  const columns = React.useMemo(
+      () => [
+      {
+          Header: 'User Info',
+          columns: [
+          {
+              Header: 'Name',
+              accessor: 'username',
 
-            },
-            {
-                Header: 'Age',
-                accessor: 'age',
+          },
+          {
+              Header: 'Age',
+              accessor: 'age',
 
-            },
-            {
-                Header: 'Email',
-                accessor: 'email',
+          },
+          {
+              Header: 'Email',
+              accessor: 'email',
 
-            },
-            ],
-        },
-        {
-            Header: 'Health Info',
-            columns: [
-            {
-                Header: 'Covid Vaccination',
-                accessor: 'covid',
-            },
-            {
-                Header: 'Other',
-                accessor: 'other',
-            },
-            ],
-        },
-        ],
-        []
-    )
-
-    const data = React.useMemo(() =>
-    [
-        {
-        name: 'Kim Parrish',
-        age: 23,
-        email: 'jfeifjeoi@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        {
-        name: 'Michele Castillo',
-        age: 34,
-        email: 'ghijidsasnf@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        {
-        name: 'Eric Ferris',
-        age: 23,
-        email: 'jfeifjfefei@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        {
-        name: 'Gloria Noble',
-        age: 56,
-        email: 'jfeifdsdoi@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        {
-        name: 'Darren Daniels',
-        age: 45,
-        email: 'jfeiffwefwefjeoi@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        {
-        name: 'Ted McDonald',
-        age: 32,
-        email: 'jfeifceceejeoi@gmail',
-        covid: 'false',
-        other: 'other',
-        },
-        ],
-        []
-    )    
-
-
-
-
-
+          },
+          ],
+      },
+      {
+          Header: 'Health Info',
+          columns: [
+          {
+              Header: 'Covid Vaccination',
+              accessor: 'covid',
+          },
+          {
+              Header: 'Other',
+              accessor: 'other',
+          },
+          ],
+      },
+      ],
+      []
+  );
+  
+  const data = accounts;
 
     // Use the state and functions returned from useTable to build your UI
     const defaultColumn = React.useMemo(
