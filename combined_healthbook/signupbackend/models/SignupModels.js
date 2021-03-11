@@ -17,17 +17,33 @@ const signupTemplate = new mongoose.Schema({
         type:Date,
         default:Date.now
     },
-    covid:{
-        type:String,
-        default:"false"
+    vaccination_covid:{
+        type:Boolean,
+        required:false
+    },
+    vaccination_flue:{
+        type:Boolean,
+        required:false
+    },
+    vaccination_tuber:{
+        type:Boolean,
+        required:false
+    },
+    health_check_physical:{
+        type:Boolean,
+        required:false
     },
     age:{
         type:Number,
-        default: 0
+        required:true
     },
-    other:{
+    date_of_birth:{
+        type:Date,
+        required:true
+    },
+    fullname:{
         type:String,
-        default: "NONE"
+        required:true
     }
 })
 

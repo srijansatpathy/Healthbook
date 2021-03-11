@@ -5,6 +5,8 @@ import user_icon from '../Images/user_icon.webp';
 import password_icon from '../Images/password_icon.webp';
 import email_icon from '../Images/email_icon.webp';
 import logo_main from '../Images/final_logo.png';
+import name_icon from '../Images/fullname_icon.webp';
+import dob_icon from '../Images/dob_icon.webp';
 import SigninBox from '../Pages/SigninPage.js';
 
 class RegisterBox extends React.Component {
@@ -19,17 +21,18 @@ class RegisterBox extends React.Component {
             password: "",
             email: "",
             id:"",
+            fullname: "",
+            date_of_birth: "",
             accType:"",
             isCompleted: false
         }
 
         // Bind the event functions
-        this.inputUsername = 
-        this.inputUsername.bind(this);
-        this.inputPassword = 
-        this.inputPassword.bind(this);
-        this.inputEmail = 
-        this.inputEmail.bind(this);
+        this.inputUsername = this.inputUsername.bind(this);
+        this.inputPassword = this.inputPassword.bind(this);
+        this.inputEmail = this.inputEmail.bind(this);
+        this.inputName = this.inputName.bind(this);
+        this.inputDob = this.inputDob.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
     }
@@ -64,14 +67,31 @@ class RegisterBox extends React.Component {
         });
     }
 
+    inputName(event) {
+        this.setState({
+            fullname:event.target.value,
+        });
+    }
+
+    inputDob(event) {
+        this.setState({
+            date_of_birth:event.target.value,
+        });
+    }
+
     onSubmit (event) {
+        let today = new Date();
+        let user_age = today.getFullYear() - parseInt(this.state.date_of_birth.substring(0,4));
+
         event.preventDefault();
         const registerData = {
             username: this.state.userName,
             email: this.state.email,
             password: this.state.password,
+            age:user_age,
+            date_of_birth:this.state.date_of_birth,
+            fullname:this.state.fullname
         }
-
         // Axios input data session
         axios.post('http://localhost:4000/app/signup', registerData)
         .then(response => {
@@ -106,6 +126,7 @@ class RegisterBox extends React.Component {
                                    onChange={this.inputUsername}
                                    value = {this.state.userName}
                                    className="form-control form-group"
+                                   required
                             /> <br/>
 
                             <img className="icon" src={email_icon}/>
@@ -113,6 +134,7 @@ class RegisterBox extends React.Component {
                                    onChange={this.inputEmail}
                                    value = {this.state.email}
                                    className="form-control form-group"
+                                   required
                             /> <br/>
 
                             <img className="icon" src={password_icon}/>
@@ -120,6 +142,21 @@ class RegisterBox extends React.Component {
                                    onChange={this.inputPassword}
                                    value = {this.state.password}
                                    className="form-control form-group"
+                                   required
+                            /> <br/>
+                            <img className="icon" src={name_icon}/>
+                            <input type="text" placeholder="fullname"
+                                   onChange={this.inputName}
+                                   value = {this.state.fullname}
+                                   className="form-control form-group"
+                                   required
+                            /> <br/>
+                            <img className="icon" src={dob_icon}/>
+                            <input type="date"
+                                   onChange={this.inputDob}
+                                   value = {this.state.date_of_birth}
+                                   className="form-control form-group"
+                                   required
                             /> <br/>
 
                             <input id="acc_signup" type="submit" value="Sign up" 

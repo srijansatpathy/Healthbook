@@ -28,10 +28,6 @@ var DataInfo = {
 
 };
 
-
-
-
-
 class SigninBox extends React.Component {
     constructor(props) {
         super(props);  
@@ -78,7 +74,6 @@ class SigninBox extends React.Component {
             userName:event.target.value,
         });
 
-        
     }
 
     inputPassword(event) {

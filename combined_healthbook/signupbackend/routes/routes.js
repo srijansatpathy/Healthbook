@@ -14,12 +14,19 @@ router.post('/signup', async (request, response) => {
     const securePassword = await bcrypt.hash(request.body.password, saltpassword)
     let valid_registration = true
     let error_msg = ""
-
     const signupUser = new signupTemplateCopy({
         username:request.body.username,
         email:request.body.email,
-        password:securePassword
+        password:securePassword,
+        vaccination_covid:false,
+        vaccination_flue:false,
+        vaccination_tuber:false,
+        health_check_physical:false,
+        age:request.body.age,
+        date_of_birth: request.body.date_of_birth,
+        fullname: request.body.fullname
     })
+    console.log(signupUser)
     const {username, email} = request.body
     await signupTemplateCopy.find({username}, (err, user) => {
         if (err) {
@@ -99,7 +106,7 @@ router.route("/poststore").get((req, res) => {
     // search for every post in the data base
     Post.find({ })
         .then((foundPosts) => {
-            console.log('Data: ', foundPosts);
+            //console.log('Data: ', foundPosts);
             res.json(foundPosts)
         })
 })
