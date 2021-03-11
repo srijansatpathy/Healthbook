@@ -44,3 +44,14 @@
     justify-content: space-evenly;
     padding-top: 4rem;
 }
+
+.update_btn {
+    padding: 0.4rem 1.9rem;
+    border-radius: 9px;
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.update_list {
+    margin-left: 42%;
+}

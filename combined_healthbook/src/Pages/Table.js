@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { useTable, usePagination, useFilters } from 'react-table'
 import  NavigationTab from '../Navigation/NavigTab.js';
 import { GlobalContext } from '../context/GlobalState';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Table() {
   const { accounts, getAccounts } = useContext(GlobalContext);
