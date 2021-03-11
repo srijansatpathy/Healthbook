@@ -28,18 +28,19 @@ function Posts() {
          .then((response) => {
             const data = response.data;
             setPosts(data);  // store data w/ useState
-            console.log("Get data sucess")
             
            })
          .catch(() => {
             console.log("can't access data")
          })
     
-        
+    // create an array of <div> elements in the array
+    var array_contents = DisplayAarryPost(posts);
+    
     return(
         // Display posts
         <div className="allPosts">
-        {DisplayAarryPost(posts)}
+            {array_contents}
         </div>
         
     );
