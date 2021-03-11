@@ -4,6 +4,41 @@ import  NavigationTab from '../Navigation/NavigTab.js';
 import { GlobalContext } from '../context/GlobalState';
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
+import styled from 'styled-components'
+
+const Styles = styled.div`
+ table {
+   border-spacing: 0;
+   border: 1px solid black;
+
+   tr {
+     :last-child {
+       td {
+         border-bottom: 0;
+       }
+     }
+   }
+
+   th,
+   td {
+     padding: 0.5rem;
+     border-bottom: 1px solid black;
+     border-right: 1px solid black;
+
+     :last-child {
+       border-right: 0;
+     }
+   }
+  
+   th {
+     background: cornflowerblue;
+     border-bottom: 3px solid blue;
+     color: white;
+     fontWeight: bold;
+   }
+ }
+`
+
 export default function Table() {
   const { accounts, getAccounts } = useContext(GlobalContext);
 
@@ -21,7 +56,7 @@ export default function Table() {
           columns: [
           {
               Header: 'Name',
-              accessor: 'username',
+              accessor: 'fullname',
 
           },
           {
@@ -40,12 +75,24 @@ export default function Table() {
           Header: 'Health Info',
           columns: [
           {
+              id: "vaccination_covid",
               Header: 'Covid Vaccination',
-              accessor: 'covid',
+              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
           },
           {
-              Header: 'Other',
-              accessor: 'other',
+              id: "vaccination_flue",
+              Header: 'Flue Vaccination',
+              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
+          },
+          {
+              id: 'vaccination_tuber',
+              Header: 'Tuber Vaccination',
+              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
+          },
+          {
+              id: 'health_check_physical',
+              Header: 'Physical Health Check',
+              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
           },
           ],
       },
@@ -116,31 +163,33 @@ export default function Table() {
           )}
         </code> */}
       </pre>
-      <table {...getTableProps()} className="table table-striped table-bordered">
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}
-                <div>{column.canFilter ? column.render('Filter'):null}</div>
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {page.map((row, i) => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                })}
+      <Styles>
+        <table {...getTableProps()} className="table table-striped table-bordered">
+          <thead>
+            {headerGroups.map(headerGroup => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map(column => (
+                  <th {...column.getHeaderProps()}>{column.render('Header')}
+                  <div>{column.canFilter ? column.render('Filter'):null}</div>
+                  </th>
+                ))}
               </tr>
-            )
-          })}
-        </tbody>
-      </table>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row)
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map(cell => {
+                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </Styles>
 
 
       {/* Spacing */}
