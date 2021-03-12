@@ -24,7 +24,9 @@ router.post('/signup', async (request, response) => {
         health_check_physical:false,
         age:request.body.age,
         date_of_birth: request.body.date_of_birth,
-        fullname: request.body.fullname
+        fullname: request.body.fullname,
+        gender: request.body.gender,
+        isAdmin: false
     })
     console.log(signupUser)
     const {username, email} = request.body

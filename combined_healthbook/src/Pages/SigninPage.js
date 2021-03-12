@@ -130,7 +130,7 @@ class SigninBox extends React.Component {
             return (
                 <h1><img src={logo_main} width = '288' height= '82'/>
                 <div className="signing_box"> 
-                    <span>Welcome</span>
+                    <span className="box_message">Welcome</span>
                     <form className="input_form" onSubmit={this.onSubmit}>
                         <img className="icon" src={user_icon}/>
                         <input type="txt" placeholder="username"

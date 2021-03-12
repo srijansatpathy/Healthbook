@@ -44,6 +44,15 @@ const signupTemplate = new mongoose.Schema({
     fullname:{
         type:String,
         required:true
+    },
+    gender:{
+        type:String,
+        required:true
+    },
+    isAdmin:{
+        type:Boolean,
+        required:false,
+        default:false
     }
 })
 

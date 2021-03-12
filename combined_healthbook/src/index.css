@@ -28,12 +28,15 @@
 
 /* ------------------------------ */
 .login_out_btn {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background: none;
   border: none;
   margin-top: 50px;
+  border-radius: 7px;
 }
 
 .signing_box {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background: rgb(240, 248, 255);
   border-radius: 25px;
   padding: 20px;
@@ -45,27 +48,44 @@
 
 .input_form {
   margin-top: 30px;
+  
 }
 
 input {
   margin: 10px;
   border-radius: 7px;
   height: 30px;
+  min-width: 200px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #acc_signin {
-  margin-top: 30px;
-  margin-left: 80px;
+  margin-top: 50px;
+  margin-left: 30px;
   border-radius: 9px;
 }
 
 #acc_signup {
-  margin-top: 30px;
-  margin-left: 80px;
+  margin-top: 50px;
+  margin-left: 30px;
   border-radius: 9px;
 }
 
 .icon {
   width: 25px;
   height: 25px;
+}
+
+#gender_list {
+  border-radius: 5px;
+  margin-left: 10px;
+  background-color: #f9f9f9;
+  min-width: 205px;
+  min-height: 30px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.box_message {
+  font-size: 25px;
 }
