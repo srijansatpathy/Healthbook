@@ -69,6 +69,11 @@ export default function Table() {
               accessor: 'email',
 
           },
+          {
+              Header: 'Gender',
+              accessor: 'gender',
+
+          },
           ],
       },
       {

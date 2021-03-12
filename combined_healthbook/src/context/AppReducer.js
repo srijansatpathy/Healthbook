@@ -10,6 +10,11 @@ export default function AppReducer(state, action){
             ...state,
             error: action.payload
         }
+    case 'SET_USER':
+      return {
+        ...state,
+        user: action.payload
+    }
       default:
         return state;
     }

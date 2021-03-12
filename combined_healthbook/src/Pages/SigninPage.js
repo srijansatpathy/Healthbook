@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios'
-
+import axios from 'axios';
 import user_icon from '../Images/user_icon.webp';
 import password_icon from '../Images/password_icon.webp';
 import email_icon from '../Images/email_icon.webp';
