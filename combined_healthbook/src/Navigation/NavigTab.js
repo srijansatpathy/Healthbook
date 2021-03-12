@@ -45,7 +45,7 @@ function NavigationTab(props) {
         <ProfilePic path="/profile"/> 
         <NavItems icon={FlatcolorIcons.FcHome} path= "/dashboard" />
         <NavItems icon={RemixIcons.RiChatSmile2Line} path= "/message" />
-        <NavItems icon={RemixIcons.RiLogoutBoxLine} path= "/#" />
+        <NavItems icon={RemixIcons.RiLogoutBoxLine} path= "/#"/>
         
         <NavItems icon={RemixIcons.RiCheckboxBlankCircleLine} 
         path= "#" admin={isadmin}/>

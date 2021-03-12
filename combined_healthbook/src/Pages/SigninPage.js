@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios'
-
+import axios from 'axios';
 import user_icon from '../Images/user_icon.webp';
 import password_icon from '../Images/password_icon.webp';
 import email_icon from '../Images/email_icon.webp';
@@ -54,6 +53,19 @@ class SigninBox extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentDidMount() {
+        let loginData = {}
+
+        // Axio data to Backend server
+        axios.post('http://localhost:4000/app/logoutAllUser', loginData)
+        .then(response => {
+            console.log("loggedo out")
+        })
+        .catch(()=>{
+            console.log("Logged out failed")
+        })
+    }
+
     // Login and verfication process
     loginSuccess() {
         this.setState({
@@ -91,14 +103,13 @@ class SigninBox extends React.Component {
             return;
         }
         event.preventDefault();
-
+        
         const loginData = {
             username: this.state.userName,
             password: this.state.password
         }
 
         DataInfo.userName = loginData.username;
-        console.log(DataInfo.userName);
 
         // Axio data to Backend server
         axios.post('http://localhost:4000/app/login', loginData)
@@ -130,7 +141,7 @@ class SigninBox extends React.Component {
             return (
                 <h1><img src={logo_main} width = '288' height= '82'/>
                 <div className="signing_box"> 
-                    <span>Welcome</span>
+                    <span className="box_message">Welcome</span>
                     <form className="input_form" onSubmit={this.onSubmit}>
                         <img className="icon" src={user_icon}/>
                         <input type="txt" placeholder="username"

@@ -6,6 +6,7 @@ import axios from 'axios';
 const initialState = {
     accounts: [],
     error: null,
+    user: "",
 }
 
 // Create context
@@ -27,15 +28,42 @@ export const GlobalProvider = ({ children }) => {
       } catch (err) {
         dispatch({
           type: 'ACCOUNTS_ERROR',
-          payload: err.response.error
+          payload: err.response
         });
       }
+    }
+
+    async function deleteAccounts(id) {
+      try {
+        await axios.delete(`http://localhost:4000/app/accounts/${id}`);
+  
+        dispatch({
+          type: 'DELETE_ACCOUNTS',
+          payload: id
+        });
+      } catch (err) {
+        dispatch({
+          type: 'ACCOUNTS_ERROR',
+          payload: err.response
+        });
+      }
+    }
+  
+
+    function setCurrentUser(username) {
+      dispatch({
+        type: 'SET_USER',
+        payload: username,
+      });
     }
   
     return (<GlobalContext.Provider value={{
       accounts: state.accounts,
       error: state.error,
-      getAccounts
+      user: state.user,
+      getAccounts,
+      setCurrentUser,
+      deleteAccounts
     }}>
       {children}
     </GlobalContext.Provider>);

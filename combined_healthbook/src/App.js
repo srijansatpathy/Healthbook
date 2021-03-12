@@ -21,7 +21,7 @@ function App() {
       <Router>
         {/* <NavigationTab /> */}
         <Switch>
-          <Route path='/' exact component={SigninBox}/>
+          <Route path='/' exact component={SigninBox} />
           <Route path='/dashboard' component={Dashboard}  />
           <Route path='/admin' component={Table} />
           <Route path='/profile' component={Card} />

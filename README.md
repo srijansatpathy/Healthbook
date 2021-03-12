@@ -16,3 +16,5 @@ To install the required modules inside "combined_healthbook" folder
 
 5: "npm start"
 To start running the react web on the browser and testing
+
+6: go to signupBackend folder and run "npm run start"

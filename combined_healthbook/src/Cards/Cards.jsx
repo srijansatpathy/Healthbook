@@ -1,38 +1,98 @@
 import React, { Component } from 'react'
 import Card from './CardUI';
+import axios from 'axios'
 
-import me from '../Images/IMG_0620.jpg';
+import me from '../Images/user_image.webp';
 import vaccine from '../Images/economics-of-vaccinations.jpg';
 import health from '../Images/wcs-health-chech.png';
 import NavigationTab from '../Navigation/NavigTab';
 import { FaChevronCircleDown, FaLuggageCart } from 'react-icons/fa';
 
 class Cards extends Component {
-    state = {
-        text1: "COVID-19: TODO",
-        text2: "INFLUENZA: TODO",
-        text3: "TUBERCULOSIS: TODO",
-        text4: "Physical: TODO"
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            username:"",
+            fullname:"asd",
+            id:"",
+            age:0,
+            email:"",
+            gender:"",
+            text1: false,
+            text2: false,
+            text3: false,
+            text4: false,
+        }
+
+        this.updateVacc = this.updateVacc.bind(this)
     }
+    
+    componentDidMount() {
+        const loginData = {isAdmin: true}
+        axios.get('http://localhost:4000/app/getLoggedInUser', loginData)
+        .then(response => {
+            if(response.headers["content-type"].indexOf("text") !== -1) {
+                alert(response.data)
+            }
+            else {
+                this.setState({
+                    username: response.data.username,
+                    fullname: response.data.fullname,
+                    id: response.data._id.substring(1,10),
+                    age: response.data.age,
+                    gender: response.data.gender,
+                    email: response.data.email,
+                    text1: response.data.vaccination_covid,
+                    text2: response.data.vaccination_flue,
+                    text3: response.data.vaccination_tuber,
+                    text4: response.data.health_check_physical,
+                });
+            }
+        })
+    }
+
+    updateVacc(whichAcc) {
+        const updateData = {
+            username: this.state.username,
+            vaccination_covid: this.state.text1 | whichAcc === 1,
+            vaccination_flue: this.state.text2 | whichAcc === 2,
+            vaccination_tuber: this.state.text3 | whichAcc === 3,
+            health_check_physical: this.state.text4 | whichAcc === 4,
+        }
+        console.log(this.state.text2)
+        axios.post('http://localhost:4000/app/updateVacc', updateData)
+        .then(response=> {
+            console.log("Update success")
+        })
+        .catch(() => {
+            console.log("error occurred")
+        })
+    }
+
     covid_update_action = () => {
         this.setState({
-            text1: "COVID-19: Done",
+            text1: true,
         });
+        this.updateVacc(1)
     }
     flue_update_action = () => {
         this.setState({
-            text2: "INFLUENZA: Done",
+            text2: true,
         });
+        this.updateVacc(2)
     }
     tb_update_action = () => {
         this.setState({
-            text3: "TUBERCULOSIS: Done",
+            text3: true,
         });
+        this.updateVacc(3)
     }
     physical_update_action = () => {
         this.setState({
-            text4: "Physical: Done"
+            text4: true,
         });
+        this.updateVacc(4)
     }
       
     render() {
@@ -43,24 +103,22 @@ class Cards extends Component {
             "flexbox-container">
                 {/* <div className="row"> */}
                     <div className="col-md-4">
-                        <Card imgsrc={me} title="Srijan Satpathy (UCLA)"
-                        body1="ID: 123456789"
-                        body2="Age: 20"
-                        body3="Email: email@email.com"
-                        b1="Update profile"
-                        b2="Report user"
-                        b3="Sign out"/>
+                        <Card imgsrc={me} title={this.state.fullname}
+                        body1={"ID : " + this.state.id}
+                        body2={"Age : " + this.state.age}
+                        body3={"Email : " + this.state.email}
+                        body4={"Gender : " + this.state.gender}/>
                     </div>
                     <div className="col-md-4">
                         <Card imgsrc={vaccine} title="Vaccinations"
-                        body1={this.state.text1}
-                        body2={this.state.text2}
-                        body3={this.state.text3}
+                        body1={"Covid Vaccination : " + (this.state.text1 ? "Done" : "To do")}
+                        body2={"Influenza Vaccination : " + (this.state.text2 ? "Done" : "To do")}
+                        body3={"Tuberculosis Vaccination : " + (this.state.text3 ? "Done" : "To do")}
                         />
                     </div>
                     <div className="col-md-4">
                         <Card imgsrc={health} title="Health Check"
-                        body1={this.state.text4}
+                        body1={"Physical Test : " + (this.state.text4 ? "Done" : "To do")}
                         b1="Mental Health"
                         b2="Harrassment"/>
                     </div>

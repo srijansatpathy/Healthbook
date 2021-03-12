@@ -7,6 +7,7 @@ import email_icon from '../Images/email_icon.webp';
 import logo_main from '../Images/final_logo.png';
 import name_icon from '../Images/fullname_icon.webp';
 import dob_icon from '../Images/dob_icon.webp';
+import gender_icon from '../Images/gender_icon.webp';
 import SigninBox from '../Pages/SigninPage.js';
 
 class RegisterBox extends React.Component {
@@ -24,6 +25,7 @@ class RegisterBox extends React.Component {
             fullname: "",
             date_of_birth: "",
             accType:"",
+            gender:"Male",
             isCompleted: false
         }
 
@@ -33,7 +35,7 @@ class RegisterBox extends React.Component {
         this.inputEmail = this.inputEmail.bind(this);
         this.inputName = this.inputName.bind(this);
         this.inputDob = this.inputDob.bind(this);
-
+        this.inputGender = this.inputGender.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -44,13 +46,17 @@ class RegisterBox extends React.Component {
         });
     }
 
+    inputGender(event) {
+        this.setState({
+            gender:event.target.value,
+        });
+    }
+
     // Event Functions
     inputUsername(event) {
         this.setState({
             userName:event.target.value,
         });
-
-        
     }
 
     inputPassword(event) {
@@ -90,7 +96,8 @@ class RegisterBox extends React.Component {
             password: this.state.password,
             age:user_age,
             date_of_birth:this.state.date_of_birth,
-            fullname:this.state.fullname
+            fullname:this.state.fullname,
+            gender:this.state.gender
         }
         // Axios input data session
         axios.post('http://localhost:4000/app/signup', registerData)
@@ -119,7 +126,7 @@ class RegisterBox extends React.Component {
                     
                     <div className="signing_box" >
                          
-                        <span>Register an account</span>
+                        <span className="box_message">Register an account</span>
                         <form className="input_form" onSubmit={this.onSubmit}>
                             <img className="icon" src={user_icon}/>
                             <input type="txt" placeholder="username"
@@ -158,6 +165,14 @@ class RegisterBox extends React.Component {
                                    className="form-control form-group"
                                    required
                             /> <br/>
+
+                            <img className="icon" src={gender_icon}/>
+                            <select name="gender" id="gender_list" onChange={this.inputGender} required>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-Binary</option>
+                                <option value="other">Other</option>
+                            </select> <br/>
 
                             <input id="acc_signup" type="submit" value="Sign up" 
                              onClick={() => this.completeRegister()}/>
