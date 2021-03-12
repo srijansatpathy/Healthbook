@@ -6,6 +6,7 @@ import axios from 'axios';
 const initialState = {
     accounts: [],
     error: null,
+    user: "",
 }
 
 // Create context
@@ -31,11 +32,20 @@ export const GlobalProvider = ({ children }) => {
         });
       }
     }
+
+    function setCurrentUser(username) {
+      dispatch({
+        type: 'SET_USER',
+        payload: username,
+      });
+    }
   
     return (<GlobalContext.Provider value={{
       accounts: state.accounts,
       error: state.error,
-      getAccounts
+      user: state.user,
+      getAccounts,
+      setCurrentUser
     }}>
       {children}
     </GlobalContext.Provider>);
