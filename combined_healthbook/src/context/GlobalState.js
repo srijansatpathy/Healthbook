@@ -33,6 +33,23 @@ export const GlobalProvider = ({ children }) => {
       }
     }
 
+    async function deleteAccounts(id) {
+      try {
+        await axios.delete(`http://localhost:4000/app/accounts/${id}`);
+  
+        dispatch({
+          type: 'DELETE_ACCOUNTS',
+          payload: id
+        });
+      } catch (err) {
+        dispatch({
+          type: 'ACCOUNTS_ERROR',
+          payload: err.response
+        });
+      }
+    }
+  
+
     function setCurrentUser(username) {
       dispatch({
         type: 'SET_USER',
@@ -45,7 +62,8 @@ export const GlobalProvider = ({ children }) => {
       error: state.error,
       user: state.user,
       getAccounts,
-      setCurrentUser
+      setCurrentUser,
+      deleteAccounts
     }}>
       {children}
     </GlobalContext.Provider>);

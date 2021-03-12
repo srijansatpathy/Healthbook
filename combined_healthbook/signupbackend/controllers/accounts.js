@@ -18,3 +18,30 @@ exports.getAccounts = async (req, res, next) => {
     }
 }
   
+
+exports.deleteAccounts = async (req, res, next) => {
+    try {
+      const account = await accounts.findById(req.params.id);
+  
+      if(!account) {
+        return res.status(404).json({
+          success: false,
+          error: 'No transaction found'
+        });
+      }
+  
+      await account.remove();
+  
+      return res.status(200).json({
+        success: true,
+        data: {}
+      });
+  
+    } catch (err) {
+      return res.status(500).json({
+        success: false,
+        error: 'Server Error'
+      });
+    }
+  }
+  
