@@ -103,7 +103,7 @@ class SigninBox extends React.Component {
             return;
         }
         event.preventDefault();
-
+        
         const loginData = {
             username: this.state.userName,
             password: this.state.password

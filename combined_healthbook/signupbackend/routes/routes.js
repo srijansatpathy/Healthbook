@@ -65,17 +65,17 @@ router.post('/signup', async (request, response) => {
 })
 
 router.post('/login', async (request, response) => {
-
     const {username, password} = request.body
     signupTemplateCopy.findOne({username},async (err, user) => {
         if (err) {
             console.log(err.message)
         }
-        else if (user === undefined){
+        else if (user === undefined || user === null){
             console.log("User not found")
             response.send("User not found")
         }
         else {
+            console.log(user)
             const pass_check = await bcrypt.compare(password, user.password)
             if (user && pass_check) {
                 response.json(user)
