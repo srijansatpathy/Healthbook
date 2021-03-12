@@ -5,7 +5,7 @@ const signupTemplateCopy = require('../models/SignupModels')
 const bcrypt = require('bcrypt')
 const axios = require('axios')
 const Post = require("../models/PostModels");
-const {getAccounts} = require("../controllers/accounts");
+const {getAccounts, deleteAccounts} = require("../controllers/accounts");
 const { deleteOne } = require('../models/SignupModels')
 
 
@@ -183,5 +183,9 @@ router.route("/poststore").get((req, res) => {
 })
 
 router.route("/accounts").get(getAccounts);
+
+router
+  .route('/accounts/:id')
+  .delete(deleteAccounts);
 
 module.exports = router;

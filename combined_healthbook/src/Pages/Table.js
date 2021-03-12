@@ -40,14 +40,15 @@ const Styles = styled.div`
 `
 
 export default function Table() {
-  const { accounts, getAccounts } = useContext(GlobalContext);
+  const { accounts, getAccounts, deleteAccounts } = useContext(GlobalContext);
 
   useEffect(() => {
     getAccounts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-    
+  const data = accounts;
+
     // Demo : Table function
   const columns = React.useMemo(
       () => [
@@ -101,11 +102,23 @@ export default function Table() {
           },
           ],
       },
+      {
+        Header: "Delete",
+        id:'delete',
+        accessor: str => "delete",
+    
+        Cell: (row)=> (
+        <span style={{cursor:'pointer',color:'blue',textDecoration:'underline'}}
+              onClick={() => {
+                deleteAccounts(row.data[row.row.index]._id);
+                }}>
+                  Delete
+                </span> 
+        )}
       ],
       []
   );
-  
-  const data = accounts;
+
 
     // Use the state and functions returned from useTable to build your UI
     const defaultColumn = React.useMemo(

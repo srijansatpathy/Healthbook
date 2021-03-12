@@ -10,6 +10,11 @@ export default function AppReducer(state, action){
             ...state,
             error: action.payload
         }
+    case 'DELETE_ACCOUNTS':
+      return {
+        ...state,
+        accounts: state.accounts.filter(account => account._id !== action.payload)
+    }
     case 'SET_USER':
       return {
         ...state,
