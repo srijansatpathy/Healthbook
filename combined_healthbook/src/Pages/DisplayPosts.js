@@ -17,38 +17,55 @@ const CreatePosts = (props) => {
 }
 
 
-function Posts() {
+class Posts extends React.Component {
 
     // usestate for reading data
-    const [posts, setPosts] = useState([])
+    constructor(props){
+        super()
 
- 
-    // get data from the database
-    axios.get("http://localhost:4000/app/poststore")
-         .then((response) => {
-            const data = response.data;
-            setPosts(data);  // store data w/ useState
+        this.state = {
+            dataArray: [],
+            postsArray: []
+        }
+
+    }
+    
+
+
+    componentDidMount() {
+
+        // get data from the database
+        axios.get("http://localhost:4000/app/poststore")
+            .then((response) => {
+                const data = response.data;
+
+                // Transfer the data
+                this.setState({dataArray: data,
+                    postsArray: DisplayAarryPost(data)
+                });  
             
-           })
-         .catch(() => {
-            console.log("can't access data")
-         })
+            })
+            .catch(() => {
+                console.log("can't access data")
+            })
+    }
     
-    // create an array of <div> elements in the array
-    var array_contents = DisplayAarryPost(posts);
+
+    render () {
+
+        return(
+            // Display posts
+            <div className="allPosts">
+                {this.state.postsArray}
+            </div>
+            
+        );
+    }
     
-    return(
-        // Display posts
-        <div className="allPosts">
-            {array_contents}
-        </div>
-        
-    );
 }
 
+// create an array of <div> elements in the array
 function DisplayAarryPost(posts) {
-
-    
 
     return posts.map((post, index) => (
         

@@ -23,6 +23,7 @@ class Cards extends Component {
             text2: false,
             text3: false,
             text4: false,
+            adminStatus: "true"
         }
 
         this.updateVacc = this.updateVacc.bind(this)
@@ -98,7 +99,7 @@ class Cards extends Component {
     render() {
         return (
             <>
-            <NavigationTab />
+            <NavigationTab admin={this.state.adminStatus} />
             <div className=
             "flexbox-container">
                 {/* <div className="row"> */}
@@ -111,9 +112,12 @@ class Cards extends Component {
                     </div>
                     <div className="col-md-4">
                         <Card imgsrc={vaccine} title="Vaccinations"
-                        body1={"Covid Vaccination : " + (this.state.text1 ? "Done" : "To do")}
-                        body2={"Influenza Vaccination : " + (this.state.text2 ? "Done" : "To do")}
-                        body3={"Tuberculosis Vaccination : " + (this.state.text3 ? "Done" : "To do")}
+                        body1={"Covid Vaccination : " + (this.state.text1 
+                                ? "Done" : "To do")}
+                        body2={"Influenza Vaccination : " + (this.state.text2 
+                                ? "Done" : "To do")}
+                        body3={"Tuberculosis Vaccination : " + (this.state.text3 
+                                ? "Done" : "To do")}
                         />
                     </div>
                     <div className="col-md-4">
@@ -125,10 +129,14 @@ class Cards extends Component {
                 {/* </div> */}
             </div>
             <div className="update_list">
-                <button onClick={this.covid_update_action} className="update_btn">Update Covid-19</button>
-                <button onClick={this.flue_update_action} className="update_btn">Update Influenza</button>
-                <button onClick={this.tb_update_action} className="update_btn">Update Tuberculosis</button>
-                <button onClick={this.physical_update_action} className="update_btn">Update Physical health check</button>
+                <button onClick={this.covid_update_action} 
+                        className="update_btn">Update Covid-19</button>
+                <button onClick={this.flue_update_action} 
+                        className="update_btn">Update Influenza</button>
+                <button onClick={this.tb_update_action} 
+                        className="update_btn">Update Tuberculosis</button>
+                <button onClick={this.physical_update_action} 
+                    className="update_btn">Update Physical health check</button>
             </div>
             </>
         );

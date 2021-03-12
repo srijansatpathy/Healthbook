@@ -2,6 +2,8 @@ import React, {useState} from "react"
 import Axios from "axios";
 import NavigationTab from "../Navigation/NavigTab.js";
 import "./Dashboard.css";
+import {checkadmin} from '../Pages/SigninPage';
+
 
 function Writeposts(props) {
 
@@ -37,11 +39,12 @@ function Writeposts(props) {
         Axios.post("http://localhost:4000/app/addposts", inputData)
     }
 
+    
     return (
         
         <>
-        <NavigationTab />
-        
+        <NavigationTab admin={checkadmin}/>
+
         <h1 className="createPosts">Creating posts</h1>
         
         <div>
@@ -49,7 +52,7 @@ function Writeposts(props) {
             <div className="createTitle">
                 <input name="title" className="form-control"
                 autoComplete="off" onChange={handleChange}
-                placeholder="Title" size="58"></input>
+                placeholder="Title" size="52"></input>
             </div>
 
             <div className="createContent">

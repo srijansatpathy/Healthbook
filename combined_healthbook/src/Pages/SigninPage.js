@@ -12,18 +12,14 @@ import '../Navigation/NavigTab.css'
 import { RiStickyNoteLine } from 'react-icons/ri';
 import RegisterBox from "../Pages/RegisterPage.js";
 
-var checkadmin = false;   // global variable for Navigation
+export var checkadmin = "true";   
+// global variable for Navigation 
+// (need to be fiexed later)
 
-var DataInfo = {
+export function DataInfo()  {
 
     // Username infor
-    userName: "",
-    Age: "",
-    status: "",
-
-
-    // Array of posts
-    posts: new Array()
+    return checkadmin;
 
 };
 
@@ -31,10 +27,6 @@ class SigninBox extends React.Component {
     constructor(props) {
         super(props);  
 
-        if (props.text === "hello")
-        {
-            console.log("this works");
-        }
         this.state = {
             loggedin: false,
             isUser: false,
@@ -109,7 +101,7 @@ class SigninBox extends React.Component {
             password: this.state.password
         }
 
-        DataInfo.userName = loginData.username;
+        
 
         // Axio data to Backend server
         axios.post('http://localhost:4000/app/login', loginData)
@@ -118,6 +110,7 @@ class SigninBox extends React.Component {
                 alert(response.data)
             }
             else {
+                
                 window.location = '/dashboard'
             }
         })
@@ -138,6 +131,7 @@ class SigninBox extends React.Component {
 
         // Case 2: Login Process
         else {
+            checkadmin = "false"
             return (
                 <h1><img src={logo_main} width = '288' height= '82'/>
                 <div className="signing_box"> 
@@ -161,24 +155,19 @@ class SigninBox extends React.Component {
                         onClick={() => this.loginSuccess()}>
                         </input> <br/>
                         <button className="login_out_btn" 
-                        onClick={() => this.setRegister()}>Register an account</button>
+                        onClick={() => this.setRegister()}>
+                        Register an account</button>
                     </form>
                 </div>
                 </h1>
             );
         }
 
-        console.log(this.state.userName);
 
     }
 }
 
 
-
-// Export data for other files to use
-const getUsername = () => {
-    return DataInfo.userName;
-}
 
 
 

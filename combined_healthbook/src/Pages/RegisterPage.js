@@ -167,7 +167,8 @@ class RegisterBox extends React.Component {
                             /> <br/>
 
                             <img className="icon" src={gender_icon}/>
-                            <select name="gender" id="gender_list" onChange={this.inputGender} required>
+                            <select name="gender" id="gender_list" 
+                                    onChange={this.inputGender} required>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="non-binary">Non-Binary</option>
