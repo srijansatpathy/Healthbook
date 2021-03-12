@@ -12,6 +12,7 @@ const Card = props => {
                 <h1 className="card-text text-secondary">{props.body1}</h1>
                 <h1 className="card-text text-secondary">{props.body2}</h1>
                 <h1 className="card-text text-secondary">{props.body3}</h1>
+                <h1 className="card-text text-secondary">{props.body4}</h1>
                 <a href="#" className="btn btn-outline 
                 success">{props.b1}</a>
                 <p></p>
