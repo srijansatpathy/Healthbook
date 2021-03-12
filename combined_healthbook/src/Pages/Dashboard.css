@@ -18,8 +18,10 @@
     grid-template-columns: repeat(3,1fr);
     grid-gap: 21px;
     font-family: inter;
+    
 
 }
+
 
 .posts{
     max-width: 450px;
@@ -29,19 +31,27 @@
 
 }
 
+.posts:hover {
+    background-color: rgba(222, 245, 247, 0.774);
+    transform: scale(1.39);
+    transform-origin: left;
+    text-shadow: linen;
+}
+
 .postTitle{
-    padding-bottom: 12px;
+    padding-bottom: 1px;
     border-bottom: 1px solid lightseagreen;
 }
 
 .postContent{
-    padding-top: 10px;
+    padding-top: 5px;
     line-height: 22px;
     font-size: 18px;
-    padding-bottom: 18px;
 }
 
+
 .postDate{
+    padding-top: 28px;
     color: rgb(162, 103, 218);
 }
 
@@ -49,29 +59,47 @@
 .createPosts{
     margin-top: 30px;
     margin-bottom: 10px;
-    margin-left: 520px;
+    margin-left: 750px;
     font-family: Times;
     font-size: 46px;
-    color: rgb(206, 194, 36);
+    color: rgb(52, 174, 190);
     
 }
 
 .createTitle{
-    margin-left: 400px;
+    margin-left: 650px;
     font-size: 25px;
-    border-color: paleturquoise;
+    border-color: rgb(30, 153, 153);
+    font-family: Cochin;
+}
+
+.createTitle:hover{
+    display: block;
+
 }
 
 .createContent{
-    margin-left: 398px;
+    margin-left: 640px;
     font-size: 25px;
+    width: 715px;
+    height: 625px;
     border-color: rgb(31, 63, 63);
+    background-color: lightgoldenrodyellow;
+}
+
+.createContent:hover{
+    display: block;
 }
 
 .createButton{
     margin-top: 43px;
-    margin-left: 630px;
+    margin-left: 930px;
     font-size: 30px;
+    
+}
+
+.createButton:hover {
+    transform: scale(1.1);
 }
 
 input[name="title"] {
@@ -81,3 +109,4 @@ input[name="title"] {
 textarea[name="content"] {
     font-size: 32px;
 }
+

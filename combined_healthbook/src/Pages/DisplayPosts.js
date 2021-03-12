@@ -1,6 +1,6 @@
 import React, {createContext, useContext} from "react";
 import axios from "axios";
-
+import * as FlatcolorIcons from "react-icons/fc";
 // Use this to grab data from database
 import {useEffect, useState} from "react";
 import "./Dashboard.css";
@@ -67,16 +67,51 @@ class Posts extends React.Component {
 // create an array of <div> elements in the array
 function DisplayAarryPost(posts) {
 
-    return posts.map((post, index) => (
+    // revese mapping
+    return posts.slice(0).reverse().map((post, index) => (
         
             <div className="posts" key={index}>
-                <h1 className="postTitle">{post.title}</h1>
-                <p className="postContent">{post.content}</p>
-                <span className="postDate">{post.date}</span>
+                <h1 className="postTitle">
+                <FlatcolorIcons.FcDocument/> {"  "}
+                {SplitContentArray(post.title,22, 
+                "")}</h1>
+                {SplitContentArray(post.content,35, 
+                "postContent")}
+                <span className="postDate">
+                {String(post.date).substring(0,10)}
+                </span>
                 <br/><br/>
             </div>
 
     ));
+}
+
+function SplitContentArray(target, subLength, classStyle) {
+    var resultArray = []
+
+    var targetLength = target.length
+
+    // Case #1: nothing needed to be done
+    if(subLength >= targetLength)
+        return ( <p className={classStyle}>{target}</p>);
+
+    // Case #2: split the content
+    else {
+
+        // Stick content into array
+        for(let i = 0; i < targetLength; i+=subLength) {
+
+            resultArray.push(target.substring(i,i+subLength))
+        }
+
+        return resultArray.map((content, index) => (
+            <p className={classStyle} id={index+targetLength} >
+            {content}</p>
+        ));
+    }
+    
+
+
 }
 
 
