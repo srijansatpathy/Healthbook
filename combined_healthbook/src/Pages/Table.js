@@ -88,17 +88,17 @@ export default function Table() {
           {
               id: "vaccination_flue",
               Header: 'Flue Vaccination',
-              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
+              accessor: d => { return d.vaccination_flue ? 'completed' : 'NOT DONE' },
           },
           {
               id: 'vaccination_tuber',
               Header: 'Tuber Vaccination',
-              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
+              accessor: d => { return d.vaccination_tuber ? 'completed' : 'NOT DONE' },
           },
           {
               id: 'health_check_physical',
               Header: 'Physical Health Check',
-              accessor: d => { return d.vaccination_covid ? 'completed' : 'NOT DONE' },
+              accessor: d => { return d.health_check_physical ? 'completed' : 'NOT DONE' },
           },
           ],
       },
