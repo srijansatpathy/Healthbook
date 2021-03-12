@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt')
 const axios = require('axios')
 const Post = require("../models/PostModels");
 const {getAccounts, deleteAccounts} = require("../controllers/accounts");
+const { deleteOne } = require('../models/SignupModels')
 
 
 router.post('/signup', async (request, response) => {
@@ -66,7 +67,7 @@ router.post('/signup', async (request, response) => {
 router.post('/login', async (request, response) => {
 
     const {username, password} = request.body
-    signupTemplateCopy.find({username},async (err, user) => {
+    signupTemplateCopy.findOne({username},async (err, user) => {
         if (err) {
             console.log(err.message)
         }
@@ -75,14 +76,60 @@ router.post('/login', async (request, response) => {
             response.send("User not found")
         }
         else {
-            const pass_check = await bcrypt.compare(password, user[0].password)
+            const pass_check = await bcrypt.compare(password, user.password)
             if (user && pass_check) {
                 response.json(user)
+                user.isAdmin = true
+                user.save(function (err) {
+                    if(err) {
+                        console.error('ERROR!');
+                    }
+                });
             }
             else {
                 console.log("Incorrect password")
                 response.send("Incorrect password")
             }
+        }
+    })
+})
+
+router.get('/getLoggedInUser', async (request, response) => {
+    let isAdmin = true
+    signupTemplateCopy.findOne({isAdmin},async (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        else if (user === null){
+            console.log("No user loggedin")
+            response.send("No user loggedin")
+        }
+        else{
+            response.json(user)
+        }
+    })
+})
+
+router.post('/updateVacc', async (request, response) => {
+    const {username, vaccination_covid, vaccination_flue, vaccination_tuber, health_check_physical} = request.body
+    signupTemplateCopy.findOne({username}, async (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        else if (user === null){
+            console.log("No user loggedin")
+            response.send("No user loggedin")
+        }
+        else{
+            user.vaccination_covid = vaccination_covid
+            user.vaccination_flue = vaccination_flue
+            user.vaccination_tuber = vaccination_tuber
+            user.health_check_physical = health_check_physical
+            user.save(function (err) {
+                if(err) {
+                    console.error('ERROR!');
+                }
+            });
         }
     })
 })
