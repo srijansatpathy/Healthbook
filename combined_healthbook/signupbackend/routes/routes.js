@@ -71,7 +71,7 @@ router.post('/login', async (request, response) => {
         if (err) {
             console.log(err.message)
         }
-        else if (user === undefined || user.length == 0){
+        else if (user === undefined){
             console.log("User not found")
             response.send("User not found")
         }
@@ -125,6 +125,28 @@ router.post('/updateVacc', async (request, response) => {
             user.vaccination_flue = vaccination_flue
             user.vaccination_tuber = vaccination_tuber
             user.health_check_physical = health_check_physical
+            user.save(function (err) {
+                if(err) {
+                    console.error('ERROR!');
+                }
+            });
+        }
+    })
+})
+
+router.post('/logoutAllUser', async (request, response) => {
+    let isAdmin = true
+    signupTemplateCopy.findOne({isAdmin},async (err, user) => {
+        if (err) {
+            console.log(err.message)
+        }
+        else if (user === null){
+            console.log("No user loggedin")
+            response.send("No user loggedin")
+        }
+        else{
+            response.json(user)
+            user.isAdmin = false
             user.save(function (err) {
                 if(err) {
                     console.error('ERROR!');

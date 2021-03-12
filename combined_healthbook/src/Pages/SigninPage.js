@@ -53,6 +53,19 @@ class SigninBox extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
     }
 
+    componentDidMount() {
+        let loginData = {}
+
+        // Axio data to Backend server
+        axios.post('http://localhost:4000/app/logoutAllUser', loginData)
+        .then(response => {
+            console.log("loggedo out")
+        })
+        .catch(()=>{
+            console.log("Logged out failed")
+        })
+    }
+
     // Login and verfication process
     loginSuccess() {
         this.setState({
@@ -97,7 +110,6 @@ class SigninBox extends React.Component {
         }
 
         DataInfo.userName = loginData.username;
-        console.log(DataInfo.userName);
 
         // Axio data to Backend server
         axios.post('http://localhost:4000/app/login', loginData)
