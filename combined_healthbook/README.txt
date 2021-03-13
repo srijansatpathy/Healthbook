@@ -9,4 +9,9 @@
 
 5: "npm start" To start running the react web on the browser and testing
 
-6: go to signupBackend folder and run "npm run start"
+6: "cd signupbackend" To see the project server side source code location under folder "signupbackend/"
+
+4: "npm install" To install the required modules inside "signupbackend/" folder
+
+5: "npm run start" To start running the server on your local machine which allows your application to communicate with the database.
+
